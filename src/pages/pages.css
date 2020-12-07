@@ -1,0 +1,23 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+.cardSingle {
+  display: block;
+}
+.imgSingle {
+  width: 220px;
+}
+.genreList {
+  display: flex;
+  flex-direction: column;
+}
+.alignThis {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.getToCenter {
+  display: flex;
+  justify-content: center;
+}

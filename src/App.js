@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import MyNav from "./components/MyNav";
+import HomePage from "./pages/HomePage";
+import PopularPage from "./pages/PopularPage";
+import TopRatedPage from "./pages/TopRatedPage";
+import SearchPage from "./pages/SearchPage";
+import MorePage from "./pages/MorePage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <MyNav />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/popular" component={PopularPage} />
+        <Route exact path="/top_rated" component={TopRatedPage} />
+        <Route
+          exact
+          path="/search/:keyword"
+          component={SearchPage}
+          // searchKeyWord={searchKeyWord}
+        />
+        <Route exact path="/more/:id" component={MorePage} />
+      </Switch>
+    </Router>
   );
 }
 
