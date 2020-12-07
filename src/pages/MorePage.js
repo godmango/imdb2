@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Card } from "react-bootstrap";
+import { Card, Alert } from "react-bootstrap";
 import ReactPlayer from "react-player";
 import "./pages.css";
 import api from "../apiService";
@@ -13,6 +13,7 @@ const MorePage = () => {
   const [urlData, setUrlData] = useState([]);
   const [type, setType] = useState("");
   const [theId, setTheId] = useState(0);
+  const [errorMess, setErrorMess] = useState("");
 
   useEffect(() => {
     if (params.id.includes(".") === true) {
@@ -28,25 +29,31 @@ const MorePage = () => {
     if (clickedData.config && clickedData.config.url !== "") return;
     if (theId === 0) return;
     const getData = async () => {
-      if (type === "movie" || type === "") {
-        setUrl(`movie/${theId}?page=1`);
-        setUrlTrail(`movie/${theId}/videos?page=1`);
-      } else if (type === "tv") {
-        setUrl(`tv/${theId}?page=1`);
-      } else if (type === "person") {
-        setUrl(`person/${theId}?page=1`);
-      }
+      try {
+        if (type === "movie" || type === "") {
+          setUrl(`movie/${theId}?page=1`);
+          setUrlTrail(`movie/${theId}/videos?page=1`);
+        } else if (type === "tv") {
+          setUrl(`tv/${theId}?page=1`);
+        } else if (type === "person") {
+          setUrl(`person/${theId}?page=1`);
+        }
 
-      const res = await api.get(url);
-      const res2 = await api.get(urlTrail);
-      setClickedData(res);
-      setUrlData(res2);
+        const res = await api.get(url);
+        const res2 = await api.get(urlTrail);
+        setClickedData(res);
+        setUrlData(res2);
+        setErrorMess("");
+      } catch (error) {
+        setErrorMess(error.message);
+      }
     };
     getData();
   }, [theId, type, url, clickedData, urlTrail, urlData]);
 
   return (
     <div>
+      {errorMess && <Alert variant="danger">{errorMess}</Alert>}
       {(type === "movie" || type === "") &&
         clickedData.config &&
         clickedData.config.url !== "" &&

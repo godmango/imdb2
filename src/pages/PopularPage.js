@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Card, Button } from "react-bootstrap";
+import { Container, Card, Button, Alert } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import PaginationBar from "../components/PaginationBar";
 import api from "../apiService";
@@ -11,6 +10,7 @@ const PopularPage = () => {
   const [pageNum, setPageNum] = useState(1);
   const [totalPageNum, setTotalPageNum] = useState(0);
   const [movies, setMovies] = useState([]);
+  const [errorMess, setErrorMess] = useState("");
 
   const history = useHistory();
 
@@ -20,16 +20,22 @@ const PopularPage = () => {
 
   useEffect(() => {
     const getData = async () => {
-      let url = `movie/popular?page=${pageNum}`;
-      const res = await api.get(url);
-      setMovies(res.data.results);
-      setTotalPageNum(res.data.total_pages);
+      try {
+        let url = `movie/popular?page=${pageNum}`;
+        const res = await api.get(url);
+        setMovies(res.data.results);
+        setTotalPageNum(res.data.total_pages);
+        setErrorMess("");
+      } catch (error) {
+        setErrorMess(error.message);
+      }
     };
     getData();
   }, [pageNum]);
   return (
     <div>
       <Container className="containerWidth">
+        {errorMess && <Alert variant="danger">{errorMess}</Alert>}
         <div className="cards">
           {movies &&
             movies.map((item) => (
