@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Nav, Navbar, Form, FormControl, Button } from "react-bootstrap";
 import { NavLink, Redirect } from "react-router-dom";
+import logo from "../pictures/imdbLogo.jpeg";
 
 const MyNav = () => {
   const [searchKeyWord, setSearchKeyWord] = useState("");
@@ -10,9 +11,9 @@ const MyNav = () => {
     setSearchKeyWord(theWord);
   };
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar className="theNav" bg="light" expand="lg">
       <Navbar.Brand as={NavLink} to="/">
-        IMDb
+        <img className="logoSize" src={logo} alt="logo" />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

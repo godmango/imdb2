@@ -9,14 +9,11 @@ const SearchPage = ({ searchKeyWord }) => {
   const [pageNum, setPageNum] = useState(1);
   const [totalPageNum, setTotalPageNum] = useState(0);
   const [movies, setMovies] = useState([]);
-  // const [movChoise, setMovChoise] = useState("/now_playing?");
   const history = useHistory();
   const params = useParams();
 
   const handleClick = (itemID, itemType) => {
     history.push(`/more/${itemType}.${itemID}`);
-
-    // history.push(`/reading`);
   };
 
   useEffect(() => {
@@ -31,7 +28,7 @@ const SearchPage = ({ searchKeyWord }) => {
   }, [pageNum, searchKeyWord, params]);
   return (
     <div>
-      <Container>
+      <Container className="containerWidth">
         <div className="cards">
           {movies &&
             movies.map((item) => (
@@ -96,12 +93,13 @@ const SearchPage = ({ searchKeyWord }) => {
               </Card>
             ))}
         </div>
-
-        <PaginationBar
-          pageNum={pageNum}
-          setPageNum={setPageNum}
-          totalPageNum={totalPageNum}
-        />
+        <div className="getToCenter">
+          <PaginationBar
+            pageNum={pageNum}
+            setPageNum={setPageNum}
+            totalPageNum={totalPageNum}
+          />
+        </div>
       </Container>
     </div>
   );

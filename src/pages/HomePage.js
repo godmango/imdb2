@@ -9,14 +9,11 @@ const HomePage = () => {
   const [pageNum, setPageNum] = useState(1);
   const [totalPageNum, setTotalPageNum] = useState(0);
   const [movies, setMovies] = useState([]);
-  // const [movChoise, setMovChoise] = useState("/now_playing?");
 
   const history = useHistory();
 
   const handleClick = (itemID) => {
     history.push(`/more/${itemID}`);
-
-    // history.push(`/reading`);
   };
 
   useEffect(() => {
@@ -52,13 +49,13 @@ const HomePage = () => {
               </Card>
             ))}
         </div>
-
-        <PaginationBar
-          className="getToCenter"
-          pageNum={pageNum}
-          setPageNum={setPageNum}
-          totalPageNum={totalPageNum}
-        />
+        <div className="getToCenter">
+          <PaginationBar
+            pageNum={pageNum}
+            setPageNum={setPageNum}
+            totalPageNum={totalPageNum}
+          />
+        </div>
       </Container>
     </div>
   );

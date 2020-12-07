@@ -14,8 +14,6 @@ const MorePage = () => {
   const [type, setType] = useState("");
   const [theId, setTheId] = useState(0);
 
-  // const [typeOf, setTypeOf] = useState("");
-  // const [idOf, setIdOf] = useState("");
   useEffect(() => {
     if (params.id.includes(".") === true) {
       let splitted = params.id.split(".");

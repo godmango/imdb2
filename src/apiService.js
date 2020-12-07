@@ -1,5 +1,4 @@
 import axios from "axios";
-// import { toast } from "react-toastify";
 const MyApi = process.env.REACT_APP_APIKEY;
 
 const api = axios.create({

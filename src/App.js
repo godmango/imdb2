@@ -17,12 +17,7 @@ function App() {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/popular" component={PopularPage} />
         <Route exact path="/top_rated" component={TopRatedPage} />
-        <Route
-          exact
-          path="/search/:keyword"
-          component={SearchPage}
-          // searchKeyWord={searchKeyWord}
-        />
+        <Route exact path="/search/:keyword" component={SearchPage} />
         <Route exact path="/more/:id" component={MorePage} />
       </Switch>
     </Router>

@@ -10,14 +10,11 @@ const TopRatedPage = () => {
   const [pageNum, setPageNum] = useState(1);
   const [totalPageNum, setTotalPageNum] = useState(0);
   const [movies, setMovies] = useState([]);
-  // const [movChoise, setMovChoise] = useState("/now_playing?");
 
   const history = useHistory();
 
   const handleClick = (itemID) => {
     history.push(`/more/${itemID}`);
-
-    // history.push(`/reading`);
   };
 
   useEffect(() => {
@@ -31,7 +28,7 @@ const TopRatedPage = () => {
   }, [pageNum]);
   return (
     <div>
-      <Container>
+      <Container className="containerWidth">
         <div className="cards">
           {movies &&
             movies.map((item) => (
@@ -53,12 +50,13 @@ const TopRatedPage = () => {
               </Card>
             ))}
         </div>
-
-        <PaginationBar
-          pageNum={pageNum}
-          setPageNum={setPageNum}
-          totalPageNum={totalPageNum}
-        />
+        <div className="getToCenter">
+          <PaginationBar
+            pageNum={pageNum}
+            setPageNum={setPageNum}
+            totalPageNum={totalPageNum}
+          />
+        </div>
       </Container>
     </div>
   );
