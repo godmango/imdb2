@@ -21,3 +21,6 @@
   display: flex;
   justify-content: center;
 }
+.containerWidth {
+  max-width: 1200px;
+}

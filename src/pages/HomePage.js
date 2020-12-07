@@ -30,7 +30,7 @@ const HomePage = () => {
   }, [pageNum]);
   return (
     <div>
-      <Container>
+      <Container className="containerWidth">
         <div className="cards">
           {movies &&
             movies.map((item) => (
