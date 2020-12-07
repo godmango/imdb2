@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Nav, Navbar, Form, FormControl, Button, Image } from "react-bootstrap";
+import { Nav, Navbar, Form, FormControl, Button } from "react-bootstrap";
 import { NavLink, Redirect } from "react-router-dom";
 
 const MyNav = () => {
